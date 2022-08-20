@@ -1,6 +1,9 @@
 package models;
 
-public class Booking {
+import java.util.Comparator;
+import java.util.Objects;
+
+public  class Booking implements Comparable<Booking> {
     private int idBooking;
     private String startDay;
     private String finishDay;
@@ -69,5 +72,21 @@ public class Booking {
     public String toString(){
         return "id booking: "+getIdBooking()+" star day: "+getStartDay()+" finish day: "+getFinishDay()+
                 " id customer: "+getIdCustomer()+" name service: "+getNameService()+" type service: "+getTypeService();
+    }
+
+    @Override
+    public int compareTo(Booking booking) {
+        return this.getIdBooking() - booking.getIdBooking();
+    }
+
+    public int hashCode() {
+        return Objects.hash(idBooking);
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Booking booking = (Booking) o;
+        return idBooking == booking.idBooking;
     }
 }

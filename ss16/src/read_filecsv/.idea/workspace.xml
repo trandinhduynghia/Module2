@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="51975a73-d28c-4794-81ae-2670090b26a4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../FuramaResort/src/services/BookingServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ontap1/src/controller/GeneralManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ontap1/src/controller/IPhoneBookManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ontap1/src/controller/PhoneBookManagement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ontap1/src/controller/WriteReadFileCSV.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ontap1/src/model/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss17/src/product/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss17/src/product/ProductManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss17/src/product/main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss17/src/product/product" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss18/src/ValidateNameClass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../ss18/src/ValidatePhoneNumber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../FuramaResort/out/production/FuramaResort/controllers/FuramaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../FuramaResort/out/production/FuramaResort/controllers/FuramaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../FuramaResort/out/production/FuramaResort/models/Booking.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../FuramaResort/out/production/FuramaResort/models/Booking.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../FuramaResort/src/controllers/FuramaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../FuramaResort/src/controllers/FuramaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../FuramaResort/src/models/Booking.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../FuramaResort/src/models/Booking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss12/out/production/ss12/array_list/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss12/out/production/ss12/array_list/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss13/out/production/ss13/chuoi_tang_dan/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss13/out/production/ss13/chuoi_tang_dan/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss13/src/chuoi_tang_dan/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss13/src/string_max/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss14/out/production/ss14/thuat_toan_sap_xep_chen/MinhHoaThuatToanSapXepChon.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss14/out/production/ss14/thuat_toan_sap_xep_chen/ThuatToanSapXepChen.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss14/out/production/ss14/thuat_toan_sap_xep_chen/ThuatToanSapXepChen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss14/src/thuat_toan_sap_xep_chen/MinhHoaThuatToanSapXepChon.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss14/src/thuat_toan_sap_xep_chen/MinhHoaThuatToanSapXepChen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss14/src/thuat_toan_sap_xep_chen/ThuatToanSapXepChen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss14/src/thuat_toan_sap_xep_chen/ThuatToanSapXepChen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss17/out/production/ss17/doc_ghi_danh_sach_sinh_vien/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss17/out/production/ss17/doc_ghi_danh_sach_sinh_vien/main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss17/out/production/ss17/doc_ghi_danh_sach_sinh_vien/student" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss17/out/production/ss17/doc_ghi_danh_sach_sinh_vien/student" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss17/src/doc_ghi_danh_sach_sinh_vien/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss17/src/doc_ghi_danh_sach_sinh_vien/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss17/src/doc_ghi_danh_sach_sinh_vien/student" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss17/src/doc_ghi_danh_sach_sinh_vien/student" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="2DQy9h7WYVccZEHxuEQNKgA2PQg" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="51975a73-d28c-4794-81ae-2670090b26a4" name="Changes" comment="" />
+      <created>1660645454175</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1660645454175</updated>
+      <workItem from="1660645455755" duration="21000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
