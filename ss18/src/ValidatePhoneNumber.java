@@ -7,16 +7,16 @@ public class ValidatePhoneNumber {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Nhập vào số điện thoại: ");
         String phoneNumber = scanner.nextLine();
-        ValidateNameClass nameClassExample = new ValidateNameClass();
-        System.out.println(phoneNumber + " : "+nameClassExample.validaye(phoneNumber));
+        ValidatePhoneNumber validatePhoneNumber = new ValidatePhoneNumber();
+        System.out.println(phoneNumber + " : "+validatePhoneNumber.validate(phoneNumber));
     }
 
-    private static final String Phone_Number_REGEX  = "^\\([0-9]{2}\\)-\\([0-9]{10}\\)$";
+    private static final String Phone_Number_REGEX  = "\\([0-9]{2}\\)-\\(0[0-9]{9}\\)";
     public ValidatePhoneNumber(){
 
     }
 
-    public boolean validaye(String regex){
+    public boolean validate(String regex){
         Pattern pattern = Pattern.compile(Phone_Number_REGEX);
         Matcher matcher = pattern.matcher(regex);
         return matcher.matches();

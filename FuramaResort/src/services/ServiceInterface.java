@@ -1,5 +1,11 @@
 package services;
 import models.Service;
 public interface ServiceInterface {
-    Service addNewService();
+    public void display();
+
+    public void addNew();
+
+    public void edit();
+
+    public void delete();
 }

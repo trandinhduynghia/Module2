@@ -1,25 +1,21 @@
 package controllers;
 
 import models.*;
-import services.BookingServiceImpl;
-import services.CustomerServiceImpl;
-import services.EmployeeServiceImpl;
-import services.FacilityServiceImpl;
+import services.*;
+import exception.Exception;
 
 import java.util.Scanner;
 import java.util.concurrent.Callable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class FuramaController {
-    public static Scanner scanner = new Scanner(System.in);
+public class FuramaController extends Exception{
+    Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         FuramaController furamaController = new FuramaController();
         furamaController.run();
     }
     public void run(){
-        EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
-        CustomerServiceImpl customerService = new CustomerServiceImpl();
-        FacilityServiceImpl facilityService = new FacilityServiceImpl();
-        BookingServiceImpl bookingService = new BookingServiceImpl();
         int choose = -1;
         do{
             menu();
@@ -30,21 +26,19 @@ public class FuramaController {
             }
             switch (choose) {
                 case 1:
-                    employeeManager(employeeService);
+                    employeeManager();
                     break;
                 case 2:
-                    costomerManager(customerService);
+                    costomerManager();
                     break;
                 case 3:
-                    facilityManagement(facilityService);
+                    facilityManagement();
                     break;
                 case 4:
-                    bookingManagement(bookingService);
+                    bookingManagement();
                     break;
                 case 5:
-                    System.out.println("1. Display list customers use service");
-                    System.out.println("2. Display list customers get voucher");
-                    System.out.println("3. Return main menu");
+                    promotionManagement();
                     break;
             }
         }while (choose != 6);
@@ -59,38 +53,39 @@ public class FuramaController {
         System.out.println("6. Exit");
     }
 
-    public static Employee inputNewEmployeeInfo() {
+    public Employee inputNewEmployeeInfo() {
         scanner = new Scanner(System.in);
         System.out.println("Nhập id nhân viên:");
         int id = Integer.parseInt(scanner.nextLine());
         System.out.println("Nhập tên nhân viên: ");
-        String name = scanner.nextLine();
+        String name = inputName();
         System.out.println("Nhập ngày sinh: ");
-        String birthday = scanner.nextLine();
+        String birthday = inputBirthday();
         System.out.println("Nhập giới tính: ");
-        String gender = scanner.nextLine();
+        String gender = inputGender();
         System.out.println("Nhập số CMND: ");
         String idNumber = scanner.nextLine();
         System.out.println("Nhập số điện thoại: ");
-        String phoneNumber = scanner.nextLine();
+        String phoneNumber = inputPhoneNumber();
         System.out.println("Nhập email: ");
-        String email = scanner.nextLine();
+        String email = inputEmail();
         System.out.println("Nhập trình độ: ");
         String level = scanner.nextLine();
         System.out.println("Nhập vị trí: ");
         String location = scanner.nextLine();
         System.out.println("Nhập lương: ");
-        Double wage = scanner.nextDouble();
+        Double wage = inputRentalCots();
         return new Employee(id, name, birthday, gender, idNumber, phoneNumber, email, level, location, wage);
     }
 
-    public static void employeeManager(EmployeeServiceImpl employeeService) {
+    public void employeeManager() {
+        EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
         int choose1 = -1;
         do{
             System.out.println("1. Display list employees");
             System.out.println("2. Add new employees");
             System.out.println("3. Edit employees");
-            System.out.println("4. Return main menu");
+            System.out.println("4. Return menu");
             System.out.println("Mời bạn nhập chức năng:");
             choose1 = scanner.nextInt();
             if (choose1 < 1 || choose1 > 4) {
@@ -104,6 +99,7 @@ public class FuramaController {
                 case 2: {
                     Employee newEmployee = inputNewEmployeeInfo();
                     employeeService.addEmployee(newEmployee);
+                    employeeService.writeFile();
                     System.out.println("Đã thêm nhân viên thành công!");
                     break;
                 }
@@ -123,22 +119,22 @@ public class FuramaController {
         }while (choose1 != 4);
     }
 
-    public static Customer inputNewCustomerInfo() {
+    public Customer inputNewCustomerInfo() {
         scanner = new Scanner(System.in);
         System.out.println("Nhập id khách hàng:");
         int id = Integer.parseInt(scanner.nextLine());
         System.out.println("Nhập tên khách hàng: ");
-        String name = scanner.nextLine();
+        String name = inputName();
         System.out.println("Nhập ngày sinh: ");
-        String birthday = scanner.nextLine();
+        String birthday = inputBirthday();
         System.out.println("Nhập giới tính: ");
-        String gender = scanner.nextLine();
+        String gender = inputGender();
         System.out.println("Nhập số CMND: ");
         String idNumber = scanner.nextLine();
         System.out.println("Nhập số điện thoại: ");
-        String phoneNumber = scanner.nextLine();
+        String phoneNumber = inputPhoneNumber();
         System.out.println("Nhập email: ");
-        String email = scanner.nextLine();
+        String email = inputEmail();
         System.out.println("Nhập loại khách hàng: ");
         String typeCustomer = scanner.nextLine();
         System.out.println("Nhập địa chị: ");
@@ -146,7 +142,8 @@ public class FuramaController {
         return new Customer(id, name, birthday, gender, idNumber, phoneNumber, email, typeCustomer, adress);
     }
 
-    public static void costomerManager(CustomerServiceImpl customerService) {
+    public void costomerManager() {
+        CustomerServiceImpl customerService = new CustomerServiceImpl();
         int choose2 = -1;
         do{
             System.out.println("1. Display list customers");
@@ -183,64 +180,65 @@ public class FuramaController {
         }while (choose2 != 4);
     }
 
-    public static Villa inputNewVillaInfo() {
+    public Villa inputNewVillaInfo() {
         scanner = new Scanner(System.in);
         System.out.println("Nhập tên dịch vụ: ");
-        String nameService = scanner.nextLine();
+        String nameService = inputName();
         System.out.println("Nhập diện tích: ");
-        double areaUse = scanner.nextDouble();
+        double areaUse = inputArea();
         System.out.println("Nhập chi phí thuê: ");
-        double rencalCosts = scanner.nextDouble();
+        double rencalCosts = inputRentalCots();
         System.out.println("Nhập số người tối đa: ");
-        int maxNumberOfPeople = Integer.parseInt(scanner.nextLine());
+        int maxNumberOfPeople = inputMaxNumberOfPeople();
         System.out.println("Nhập loại thuê: ");
-        String typeRent = scanner.nextLine();
+        String typeRent = inputName();
         System.out.println("Nhập tiêu chuẩn phòng: ");
-        String roomStandard = scanner.nextLine();
+        String roomStandard = inputName();
         System.out.println("Nhập diện tích hồ bơi: ");
-        Double areaPool = scanner.nextDouble();
+        Double areaPool = inputArea();
         System.out.println("Nhập số lầu: ");
-        int numberOfFloors = scanner.nextInt();
+        int numberOfFloors = inputNumberOfFloors();
         return new Villa(nameService, areaUse, rencalCosts, maxNumberOfPeople, typeRent, roomStandard, areaPool, numberOfFloors);
     }
 
-    public static House inputNewHouseInfo() {
+    public House inputNewHouseInfo() {
         scanner = new Scanner(System.in);
         System.out.println("Nhập tên dịch vụ: ");
-        String nameService = scanner.nextLine();
+        String nameService = inputName();
         System.out.println("Nhập diện tích: ");
-        double areaUse = scanner.nextDouble();
+        double areaUse = inputArea();
         System.out.println("Nhập chi phí thuê: ");
-        double rencalCosts = scanner.nextDouble();
+        double rencalCosts = inputRentalCots();
         System.out.println("Nhập số người tối đa: ");
-        int maxNumberOfPeople = Integer.parseInt(scanner.nextLine());
+        int maxNumberOfPeople = inputMaxNumberOfPeople();
         System.out.println("Nhập loại thuê: ");
-        String typeRent = scanner.nextLine();
+        String typeRent = inputName();
         System.out.println("Nhập tiêu chuẩn phòng: ");
-        String roomStandard = scanner.nextLine();
+        String roomStandard = inputName();
         System.out.println("Nhập số lầu: ");
-        int numberOfFloors = scanner.nextInt();
+        int numberOfFloors = inputNumberOfFloors();
         return new House(nameService, areaUse, rencalCosts, maxNumberOfPeople, typeRent, roomStandard, numberOfFloors);
     }
 
-    public static Room inputNewRoomInfo() {
+    public Room inputNewRoomInfo() {
         scanner = new Scanner(System.in);
         System.out.println("Nhập tên dịch vụ: ");
-        String nameService = scanner.nextLine();
+        String nameService = inputName();
         System.out.println("Nhập diện tích: ");
-        double areaUse = scanner.nextDouble();
+        double areaUse = inputArea();
         System.out.println("Nhập chi phí thuê: ");
-        double rencalCosts = scanner.nextDouble();
+        double rencalCosts = inputRentalCots();
         System.out.println("Nhập số người tối đa: ");
-        int maxNumberOfPeople = Integer.parseInt(scanner.nextLine());
+        int maxNumberOfPeople = inputMaxNumberOfPeople();
         System.out.println("Nhập loại thuê: ");
-        String typeRent = scanner.nextLine();
+        String typeRent = inputName();
         System.out.println("Nhập dịch vụ miễn phí: ");
         String freeService = scanner.nextLine();
         return new Room(nameService, areaUse, rencalCosts, maxNumberOfPeople, typeRent, freeService);
     }
 
-    public static void facilityManagement(FacilityServiceImpl facilityService) {
+    public void facilityManagement() {
+        FacilityServiceImpl facilityService = new FacilityServiceImpl();
         int choose3 = -1;
         do{
             System.out.println("1. Display list facility");
@@ -300,37 +298,39 @@ public class FuramaController {
         }while (choose3 != 4);
     }
 
-    public static Booking inputNewBookingInfo() {
+    public Booking inputNewBookingInfo() {
         System.out.println("Nhập id booking: ");
         Integer idBooking = Integer.parseInt(scanner.nextLine());
         System.out.println("Nhập ngày bắt đầu: ");
-        String startDay = scanner.nextLine();
+        String startDay = inputBirthday();
         System.out.println("Nhập ngày kết thúc: ");
-        String finishDay = scanner.nextLine();
+        String finishDay = inputBirthday();
         System.out.println("Nhập id khách hàng: ");
         int idCustomer = Integer.parseInt(scanner.nextLine());
         System.out.println("Nhập tên dịch vụ: ");
-        String nameService = scanner.nextLine();
+        String nameService = inputName();
         System.out.println("Nhập loại dịch vụ: ");
-        String typeService = scanner.nextLine();
+        String typeService = inputName();
         return new Booking(idBooking, startDay, finishDay, idCustomer, nameService, typeService);
     }
 
-    public static Contract inputNewCotractInfo() {
+    public Contract inputNewCotractInfo() {
         System.out.println("Nhập id hợp đồng: ");
         int idContract = Integer.parseInt(scanner.nextLine());
         System.out.println("Nhập id booking: ");
         int idBooking = Integer.parseInt(scanner.nextLine());
         System.out.println("Nhập tiền đặt cọc: ");
-        Double deposit = scanner.nextDouble();
+        Double deposit = inputRentalCots();
         System.out.println("Nhập tiền thanh toán: ");
-        Double payment = scanner.nextDouble();
+        Double payment = inputRentalCots();
         System.out.println("Nhập id khách hàng: ");
         int idCustomer = Integer.parseInt(scanner.nextLine());
         return new Contract(idContract, idBooking,deposit, payment, idCustomer);
     }
 
-    public static void bookingManagement(BookingServiceImpl bookingService) {
+    public void bookingManagement() {
+        BookingServiceImpl bookingService = new BookingServiceImpl();
+        ContractServiceImpl contractService = new ContractServiceImpl();
         int choose4 = -1;
         do{
             System.out.println("1. Add new booking");
@@ -345,24 +345,36 @@ public class FuramaController {
             }
             switch (choose4) {
                 case 1:
-                    Booking booking = inputNewBookingInfo();
-                    bookingService.addBooking(booking);
-                    System.out.println("Đã thêm booking thành công!");
+                    //Booking booking = inputNewBookingInfo();
+                    //bookingService.addBooking(booking);
+                    //System.out.println("Đã thêm booking thành công!");
+                    bookingService.addBooking();
                     break;
                 case 2:
                     bookingService.displayAllBooking();
                     break;
                 case 3:
-                    Contract contract = inputNewCotractInfo();
-                    bookingService.addContract(contract);
+                    contractService.createNewContract();
                     break;
                 case 4:
-                    bookingService.displayAllContract();
+                   contractService.displayListContract();
                     break;
                 case 5:
                     break;
             }
         }while (choose4 != 6);
+    }
+
+    public void promotionManagement(){
+        int choose5 = -1;
+        do{
+            System.out.println("1. Display list customers use service");
+            System.out.println("2. Display list customers get voucher");
+            System.out.println("3. Return main menu");
+            choose5 = scanner.nextInt();
+
+
+        }while(choose5 != 3);
     }
 
 }

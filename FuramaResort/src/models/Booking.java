@@ -22,6 +22,7 @@ public  class Booking implements Comparable<Booking> {
         this.typeService = typeService;
     }
 
+
     public int getIdBooking() {
         return idBooking;
     }

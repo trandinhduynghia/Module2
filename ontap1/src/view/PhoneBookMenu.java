@@ -111,10 +111,22 @@ public class PhoneBookMenu {
             }
         }
     }
+    public  String inputName() {
+        while (true) {
+            String name = inputString.nextLine();
+            final String REGEX_NAME = "^((\\p{Lu})(\\p{Ll}*))( (\\p{Lu})(\\p{Ll}*))*$";
+            boolean isCheckName = checkRegex(REGEX_NAME, name);
+            if (isCheckName) {
+                return name;
+            } else {
+                System.out.println("Nhập tên theo dang Abc Abc");
+            }
+        }
+    }
     private Person inputNewPhoneBookInfo() {
         System.out.println("Nhập thôn tin danh bạ");
         System.out.println("Họ và tên: ");
-        String name = inputString.nextLine();
+        String name = inputName();
         System.out.println("Số điện thoại: ");
         String phoneNumber = inputPhoneNumber();
         System.out.println("Nhóm: ");

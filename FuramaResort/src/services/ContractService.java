@@ -4,7 +4,7 @@ import models.Customer;
 
 import java.util.Queue;
 
-public interface ContactService {
+public interface ContractService extends ServiceInterface{
     void addContact(Customer customer);
     Queue<Customer> getAllContact();
 }

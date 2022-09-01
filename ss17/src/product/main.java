@@ -8,10 +8,7 @@ import java.util.Scanner;
 public class main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        List<Product> products = new ArrayList<>();
-        //products.add(new Product(0, "larue","larue",200000,"bia"));
-        //productManager.addProduct(new Product(1, "cocacola","cocacola",150000,"nước ngọt"));
-        //productManager.addProduct(new Product(2, "vinamilk","vinamilk",100000,"sữa"));
+        ProductManager products = new ProductManager();
         int chose = -1;
         while (true) {
             System.out.println("1. Thêm sản phẩm");
@@ -25,23 +22,14 @@ public class main {
             switch (chose) {
                 case 1:
                     Product newProduct = inputProductInfo();
-                    products.add(newProduct);
-                    writeToFile("D:\\Module2\\ss17\\src\\product\\product", products);
+                    products.addProduct(newProduct);
+                    products.writeToFile();
                     break;
                 case 2:
-                    List<Product> productDataFromFile = readDataFromFile("D:\\Module2\\ss17\\src\\product\\product");
-                    for (Product product : productDataFromFile) {
-                        System.out.println(product);
-                    }
+                    products.displayAllProduct();
                     break;
                 case 3:
-                    System.out.println("Nhập id sản phẩm: ");
-                    int id = scanner.nextInt();
-                    try {
-                        System.out.println(products.get(id));
-                    } catch (Exception e) {
-                        System.out.println("Không tồn tại id");
-                    }
+                    System.out.println(products.findProduct());
                     break;
             }
         }
@@ -58,7 +46,6 @@ public class main {
         System.out.println("Nhập mô tả:");
         String describe = scanner.nextLine();
         return new Product(id, name, manufacturer, price, describe);
-
     }
 
     public static int getId() {
@@ -101,33 +88,5 @@ public class main {
             }
         }
         return price;
-    }
-
-
-    public static void writeToFile(String path, List<Product> products) {
-        try {
-            FileOutputStream fos = new FileOutputStream(path);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(products);
-            oos.close();
-            fos.close();
-            System.out.println("Ghi danh sách sản phẩm thành công!");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static List<Product> readDataFromFile(String path) {
-        List<Product> products = new ArrayList<>();
-        try {
-            FileInputStream fis = new FileInputStream(path);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            products = (List<Product>) ois.readObject();
-            fis.close();
-            ois.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return products;
     }
 }

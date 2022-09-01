@@ -13,11 +13,6 @@ public class CustomerServiceImpl {
 
     }
 
-    public CustomerServiceImpl(List<Customer> customers){
-        this.customers = customers;
-
-    }
-
     public void disPlayAllCustomer(){
         for(int i = 0; i < customers.size(); i++){
             System.out.println(customers.get(i));

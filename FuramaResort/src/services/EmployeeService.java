@@ -3,6 +3,6 @@ import models.Employee;
 
 import java.util.List;
 
-public interface EmployeeService {
+public interface EmployeeService extends ServiceInterface{
     List<Employee> getAllListEmployee();
 }

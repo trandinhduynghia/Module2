@@ -8,15 +8,15 @@ public class ValidateNameClass {
         System.out.println("Nhập vào tên lớp học: ");
         String nameClass = scanner.nextLine();
         ValidateNameClass nameClassExample = new ValidateNameClass();
-        System.out.println(nameClass + " : "+nameClassExample.validaye(nameClass));
+        System.out.println(nameClass + " : "+nameClassExample.validate(nameClass));
     }
 
-    private static final String NAME_CLASE_REGEX  = "^([P,A,C]{1})([0-9]{4})([G,H,I,K,L,M]{1})$";
+    private static final String NAME_CLASE_REGEX  = "([P,A,C]{1})([0-9]{4})([G,H,I,K,L,M]{1})";
     public ValidateNameClass(){
 
     }
 
-    public boolean validaye(String regex){
+    public boolean validate(String regex){
         Pattern pattern = Pattern.compile(NAME_CLASE_REGEX);
         Matcher matcher = pattern.matcher(regex);
         return matcher.matches();

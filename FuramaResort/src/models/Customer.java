@@ -3,7 +3,7 @@ package models;
 public class Customer extends Person{
     private String typeCustomer;
     private String address;
-    public Customer(){
+    public Customer(int i, String nghia, int i1, String nam, String s, String s1){
 
     }
     public Customer(int id, String name, String birthday, String gender, String idNumber, String phoneNumber, String email, String typeCustomer, String adress){
