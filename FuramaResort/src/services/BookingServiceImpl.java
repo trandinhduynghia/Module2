@@ -7,7 +7,7 @@ import java.util.concurrent.Callable;
 
 public class BookingServiceImpl {
     Scanner scanner = new Scanner(System.in);
-    private Set<Booking> bookings = new TreeSet<>(new BookingComparator());
+    public Set<Booking> bookings = new TreeSet<>(new BookingComparator());
 
     static List<Customer> customerList = new ArrayList<>();
 

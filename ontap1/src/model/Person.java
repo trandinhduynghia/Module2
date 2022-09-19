@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 public class Person implements Serializable {
     private String name;
@@ -74,4 +75,6 @@ public class Person implements Serializable {
     public String toString(){
         return "name: "+getName()+" group: "+getGroup()+" phone number: "+getPhoneNumber()+" sex: "+getSex()+" email: "+getEmail()+" address: "+getAddress();
     }
+
+
 }

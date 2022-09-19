@@ -9,5 +9,5 @@ public interface IPhoneBookManagement extends GeneralManagement<Person> {
     int findPersonByPhoneNumber(String phoneNumber);
     int findPersonByName(String name);
     void writeToFiles(Person person) ;
-    List<String> readFiles() ;
+    List<Person> readFiles() ;
 }

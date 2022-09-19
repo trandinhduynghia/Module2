@@ -1,5 +1,7 @@
 package services;
 
+import exception.UserException;
+import validate1.Validator;
 import models.Employee;
 
 import java.io.*;
@@ -8,27 +10,118 @@ import java.util.List;
 import java.util.Scanner;
 
 public class EmployeeServiceImpl {
-    public  static  Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
     private List<Employee> employees = new ArrayList<>();
 
     public EmployeeServiceImpl(){
 
     }
-    public EmployeeServiceImpl(List<Employee> employees){
-        this.employees = employees;
-    }
+
     public void displayAllEmployee(){
         employees = readFile();
         for(int i = 0; i < employees.size(); i++){
             System.out.println(employees.get(i));
         }
     }
-    public void addEmployee(Employee employee){
-        employees.add(employee);
+
+    public Employee inputNewEmployeeInfo()  {
+        System.out.println("Nhập id nhân viên:");
+        int id = Integer.parseInt(scanner.nextLine());
+        System.out.println("Nhập tên nhân viên: ");
+        String name = null;
+        while (true){
+            try {
+                name = Validator.validateName();
+                break;
+            } catch (UserException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        System.out.println("Nhập ngày sinh: ");
+        String birthday = null;
+        while (true){
+            try{
+                birthday = Validator.validateBirthday();
+                break;
+            }catch (UserException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        System.out.println("Nhập giới tính: ");
+        String gender = null;
+        while (true){
+            try{
+                gender = Validator.validateGender();
+                break;
+            }catch (UserException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        System.out.println("Nhập số CMND: ");
+        String idNumber = scanner.nextLine();
+        System.out.println("Nhập số điện thoại: ");
+        String phoneNumber = null;
+        while (true){
+            try{
+                phoneNumber = Validator.validatePhoneNumber();
+                break;
+            }catch (UserException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        System.out.println("Nhập email: ");
+        String email = null;
+        while (true){
+            try{
+                email = Validator.validateEmail();
+                break;
+            }catch (UserException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        System.out.println("Nhập trình độ: ");
+        String level = scanner.nextLine();
+        System.out.println("Nhập vị trí: ");
+        String location = scanner.nextLine();
+        System.out.println("Nhập lương: ");
+        Double wage = null;
+        while (true){
+            try{
+                wage = Validator.validateNumber();
+                break;
+            }catch (UserException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        return new Employee(id, name, birthday, gender, idNumber, phoneNumber, email, level, location, wage);
     }
-    public void updateEmployee(int id, Employee newEmployee){
-        employees.set(id, newEmployee);
+
+    public void addEmployee(){
+        employees = readFile();
+        Employee newEmployee = inputNewEmployeeInfo();
+        employees.add(newEmployee);
+        System.out.println("Đã thêm nhân viên thành công!");
     }
+
+    public void updateEmployee() {
+        employees = readFile();
+        System.out.println("Nhập id nhân viên: ");
+        int id = Integer.parseInt(scanner.nextLine());
+        boolean checkId = false ;
+        for (int i = 0; i < employees.size(); i++) {
+            if (employees.get(i).getId() == id) {
+                checkId = true;
+            }
+        }
+            if (checkId == true) {
+                    Employee newEmployee = inputNewEmployeeInfo();
+                    employees.set(id, newEmployee);
+                    System.out.println("Đã cập nhật nhân viên thành công!");
+                } else{
+                    System.out.println("Mã nhân viên không tồn tại!");
+                }
+        }
+
     public boolean findID(int id){
         for(int i = 0; i < employees.size(); i++){
             if(employees.get(i).getId() == id){
@@ -37,9 +130,10 @@ public class EmployeeServiceImpl {
         }
         return false;
     }
+
     public void writeFile(){
         String DELIMITER = ",";
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter("D:\\Module2\\FuramaResort\\src\\data\\employee.csv", true))){
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter("D:\\Module2\\FuramaResort\\src\\data\\employee.csv", false))){
             for(Employee employee: employees){
                 writer.write(employee.getId()+DELIMITER+employee.getName()+DELIMITER+employee.getBirthday()+DELIMITER+employee.getGender()+DELIMITER
                 +employee.getIdNumber()+DELIMITER+employee.getPhoneNumber()+DELIMITER+employee.getEmail()+DELIMITER+employee.getLevel()+DELIMITER+

@@ -8,7 +8,7 @@ import java.util.*;
 
 public class ContractServiceImpl {
     Scanner scanner = new Scanner(System.in);
-    private List<Contract> contractList = new ArrayList<>();
+    public List<Contract> contractList = new ArrayList<>();
 
     public void createNewContract(){
         Queue<Booking> bookingQueue = new LinkedList<>();
